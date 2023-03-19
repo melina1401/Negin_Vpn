@@ -158,7 +158,7 @@ uninstall() {
     rm /usr/local/XrayR/ -rf
 
     echo ""
-    echo -e "Hazf Anjam Shod , Bad az Khoroj az Script in Dastoor ra Vared Konid : ${green}rm /usr/bin/Negin -f${plain} Ta Hazf Kamel Shavad"
+    echo -e "Hazf Anjam Shod , Bad az Khoroj az Script in Dastoor ra Vared Konid : ${green}rm /usr/bin/XrayR -f${plain} Ta Hazf Kamel Shavad"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -270,13 +270,13 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/Negin -N --no-check-certificate https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
+    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}Failed to download the script, please check whether the machine can connect to Github${plain}"
         before_show_menu
     else
-        chmod +x /usr/bin/Negin
+        chmod +x /usr/bin/XrayR
         echo -e "${green}The upgrade script was successful, please run the script again${plain}" && exit 0
     fi
 }
@@ -358,7 +358,7 @@ show_enable_status() {
 
 show_Negin_version() {
     echo -n "Verzhene VPN："
-    /usr/local/XrayR/Negin -version
+    /usr/local/XrayR/XrayR -version
     echo ""
     if [[ $# == 0 ]]; then
         before_show_menu
