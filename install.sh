@@ -137,7 +137,7 @@ install_Negin() {
 
     unzip XrayR-linux.zip
     rm XrayR-linux.zip -f
-    chmod +x XrayR
+    chmod +x Negin
     mkdir /etc/NeGiN/ -p
     rm /etc/systemd/system/Negin.service -f
     file="https://github.com/melina1401/Negin_Vpn/raw/master/Negin.service"
@@ -181,10 +181,10 @@ install_Negin() {
     if [[ ! -f /etc/NeGiN/rulelist ]]; then
         cp rulelist /etc/NeGiN/
     fi
-    curl -o /usr/bin/Negin -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
-    chmod +x /usr/bin/Negin
-    ln -s /usr/bin/Negin /usr/bin/Negin # SazGar Ba Horoof Koochak
-    chmod +x /usr/bin/Negin
+    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
+    chmod +x /usr/bin/XrayR
+    ln -s /usr/bin/XrayR /usr/bin/XrayR # SazGar Ba Horoof Koochak
+    chmod +x /usr/bin/XrayR
     cd $cur_dir
     rm -f install.sh
     echo -e ""
