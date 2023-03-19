@@ -182,9 +182,9 @@ install_Negin() {
         cp rulelist /etc/NeGiN/
     fi
     curl -o /usr/bin/Negin -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
-    chmod +x /usr/bin/negin
-    ln -s /usr/bin/negin /usr/bin/negin # SazGar Ba Horoof Koochak
-    chmod +x /usr/bin/negin
+    chmod +x /usr/bin/Negin
+    ln -s /usr/bin/Negin /usr/bin/Negin # SazGar Ba Horoof Koochak
+    chmod +x /usr/bin/Negin
     cd $cur_dir
     rm -f install.sh
     echo -e ""
