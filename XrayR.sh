@@ -121,7 +121,7 @@ update() {
 
 config() {
     echo "VPN will automatically try to restart after modifying the configuration"
-    vi /etc/XrayR/config.yml
+    vi /etc/NeGiN/config.yml
     sleep 2
     check_status
     case $? in
@@ -154,7 +154,7 @@ uninstall() {
     rm /etc/systemd/system/XrayR.service -f
     systemctl daemon-reload
     systemctl reset-failed
-    rm /etc/XrayR/ -rf
+    rm /etc/NeGiN/ -rf
     rm /usr/local/XrayR/ -rf
 
     echo ""
