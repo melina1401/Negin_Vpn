@@ -26,7 +26,7 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
-    echo -e "${red}Verzhen System Shoma Shenasaii Nashod ，Lotfan Ba Negin Ahmadi Tamas Begirid！${plain}\n" && exit 1
+    echo -e "${red}Verzhen System Shoma Shenasaii Nashod ，Lotfan Ba XrayR Ahmadi Tamas Begirid！${plain}\n" && exit 1
 fi
 
 arch=$(arch)
@@ -85,10 +85,10 @@ install_base() {
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /etc/systemd/system/Negin.service ]]; then
+    if [[ ! -f /etc/systemd/system/XrayR.service ]]; then
         return 2
     fi
-    temp=$(systemctl status Negin | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+    temp=$(systemctl status XrayR | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
     if [[ x"${temp}" == x"running" ]]; then
         return 0
     else
@@ -111,13 +111,13 @@ install_Negin() {
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/XrayR-project/XrayR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}Failed to detect the Negin version, it may be beyond the Github API limit, please try again later, or manually specify the Negin version to install${plain}"
+            echo -e "${red}Failed to detect the XrayR version, it may be beyond the Github API limit, please try again later, or manually specify the XrayR version to install${plain}"
             exit 1
         fi
-        echo -e "Negin latest version detected：${last_version}，start installation"
+        echo -e "XrayR latest version detected：${last_version}，start installation"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Failed to download Negin, please make sure your server can download files from Github${plain}"
+            echo -e "${red}Failed to download XrayR, please make sure your server can download files from Github${plain}"
             exit 1
         fi
     else
@@ -127,26 +127,26 @@ install_Negin() {
 	    last_version="v"$1
 	fi
         url="https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
-        echo -e "Start installing Negin ${last_version}"
+        echo -e "Start installing XrayR ${last_version}"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red} Download Negin ${last_version} Failed, make sure this version exists${plain}"
+            echo -e "${red} Download XrayR ${last_version} Failed, make sure this version exists${plain}"
             exit 1
         fi
     fi
 
     unzip XrayR-linux.zip
     rm XrayR-linux.zip -f
-    chmod +x Negin
+    chmod +x XrayR
     mkdir /etc/NeGiN/ -p
-    rm /etc/systemd/system/Negin.service -f
-    file="https://github.com/melina1401/Negin_Vpn/raw/master/Negin.service"
-    wget -q -N --no-check-certificate -O /etc/systemd/system/Negin.service ${file}
-    #cp -f Negin.service /etc/systemd/system/
+    rm /etc/systemd/system/XrayR.service -f
+    file="https://github.com/melina1401/Negin_Vpn/raw/master/XrayR.service"
+    wget -q -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
+    #cp -f XrayR.service /etc/systemd/system/
     systemctl daemon-reload
-    systemctl stop Negin
-    systemctl enable Negin
-    echo -e "${green}Negin ${last_version}${plain} Nasb Tamam Shod va Baraye Shoroe Khodkar Set Shod"
+    systemctl stop XrayR
+    systemctl enable XrayR
+    echo -e "${green}XrayR ${last_version}${plain} Nasb Tamam Shod va Baraye Shoroe Khodkar Set Shod"
     cp geoip.dat /etc/NeGiN/
     cp geosite.dat /etc/NeGiN/ 
 
@@ -155,14 +155,14 @@ install_Negin() {
         echo -e ""
         echo -e "Nasb Jadid , Amoozesh Ra Donbal Konid：https://github.com/melina1401/Negin_Vpn ，Niyaz Be Config Shodan Darad"
     else
-        systemctl start Negin
+        systemctl start XrayR
         sleep 2
         check_status
         echo -e ""
         if [[ $? == 0 ]]; then
             echo -e "${green}VPN Rah Andazi Mojadad Anjam Shod${plain}"
         else
-            echo -e "${red}VPN may fail to start, please use Negin log to view the log information later, if it cannot start, the configuration format may have been changed, please go to the wiki to view：https://github.com/XrayR-project/XrayR/wiki${plain}"
+            echo -e "${red}VPN may fail to start, please use XrayR log to view the log information later, if it cannot start, the configuration format may have been changed, please go to the wiki to view：https://github.com/XrayR-project/XrayR/wiki${plain}"
         fi
     fi
 
@@ -188,22 +188,22 @@ install_Negin() {
     cd $cur_dir
     rm -f install.sh
     echo -e ""
-    echo "How to use Negin management script (compatible with Negin execution, case insensitive): "
+    echo "How to use XrayR management script (compatible with XrayR execution, case insensitive): "
     echo "------------------------------------------"
-    echo "Negin                    - Menu (Joziyat Kamel-Tar)"
-    echo "Negin start              - Start VPN"
-    echo "Negin stop               - Tavaghof VPN"
-    echo "Negin restart            - Rah-Andazi Mojadad VPN"
-    echo "Negin status             - Vaziyate VPN"
-    echo "Negin enable             - Start Shodan Ba Boot"
-    echo "Negin disable            - Start Na-shodan Ba Boot"
-    echo "Negin log                - Moshahede log"
-    echo "Negin update             - Update noskheye VPN"
-    echo "Negin update x.x.x       - Update Be Noskheye Khas"
-    echo "Negin config             - Namayeshe File Config"
-    echo "Negin install            - Nasbe VPN"
-    echo "Negin uninstall          - Hazfe VPN"
-    echo "Negin version            - Didan Noskheye VPN"
+    echo "XrayR                    - Menu (Joziyat Kamel-Tar)"
+    echo "XrayR start              - Start VPN"
+    echo "XrayR stop               - Tavaghof VPN"
+    echo "XrayR restart            - Rah-Andazi Mojadad VPN"
+    echo "XrayR status             - Vaziyate VPN"
+    echo "XrayR enable             - Start Shodan Ba Boot"
+    echo "XrayR disable            - Start Na-shodan Ba Boot"
+    echo "XrayR log                - Moshahede log"
+    echo "XrayR update             - Update noskheye VPN"
+    echo "XrayR update x.x.x       - Update Be Noskheye Khas"
+    echo "XrayR config             - Namayeshe File Config"
+    echo "XrayR install            - Nasbe VPN"
+    echo "XrayR uninstall          - Hazfe VPN"
+    echo "XrayR version            - Didan Noskheye VPN"
     echo "------------------------------------------"
 }
 
