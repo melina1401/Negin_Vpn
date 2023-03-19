@@ -85,10 +85,10 @@ install_base() {
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /etc/systemd/system/XrayR.service ]]; then
+    if [[ ! -f /etc/systemd/system/Negin.service ]]; then
         return 2
     fi
-    temp=$(systemctl status XrayR | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+    temp=$(systemctl status Negin | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
     if [[ x"${temp}" == x"running" ]]; then
         return 0
     else
@@ -100,21 +100,21 @@ install_acme() {
     curl https://get.acme.sh | sh
 }
 
-install_XrayR() {
-    if [[ -e /usr/local/XrayR/ ]]; then
-        rm /usr/local/XrayR/ -rf
+install_Negin() {
+    if [[ -e /usr/local/Negin/ ]]; then
+        rm /usr/local/Negin/ -rf
     fi
 
-    mkdir /usr/local/XrayR/ -p
-	cd /usr/local/XrayR/
+    mkdir /usr/local/Negin/ -p
+	cd /usr/local/Negin/
 
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/XrayR-project/XrayR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}Failed to detect the XrayR version, it may be beyond the Github API limit, please try again later, or manually specify the XrayR version to install${plain}"
+            echo -e "${red}Failed to detect the Negin version, it may be beyond the Github API limit, please try again later, or manually specify the Negin version to install${plain}"
             exit 1
         fi
-        echo -e "XrayR latest version detected：${last_version}，start installation"
+        echo -e "Negin latest version detected：${last_version}，start installation"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Failed to download Negin, please make sure your server can download files from Github${plain}"
@@ -127,7 +127,7 @@ install_XrayR() {
 	    last_version="v"$1
 	fi
         url="https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
-        echo -e "Start installing XrayR ${last_version}"
+        echo -e "Start installing Negin ${last_version}"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red} Download Negin ${last_version} Failed, make sure this version exists${plain}"
@@ -137,15 +137,15 @@ install_XrayR() {
 
     unzip XrayR-linux.zip
     rm XrayR-linux.zip -f
-    chmod +x XrayR
+    chmod +x Negin
     mkdir /etc/NeGiN/ -p
-    rm /etc/systemd/system/XrayR.service -f
-    file="https://github.com/melina1401/Negin_Vpn/raw/master/XrayR.service"
-    wget -q -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
-    #cp -f XrayR.service /etc/systemd/system/
+    rm /etc/systemd/system/Negin.service -f
+    file="https://github.com/melina1401/Negin_Vpn/raw/master/Negin.service"
+    wget -q -N --no-check-certificate -O /etc/systemd/system/Negin.service ${file}
+    #cp -f Negin.service /etc/systemd/system/
     systemctl daemon-reload
-    systemctl stop XrayR
-    systemctl enable XrayR
+    systemctl stop Negin
+    systemctl enable Negin
     echo -e "${green}Negin ${last_version}${plain} Nasb Tamam Shod va Baraye Shoroe Khodkar Set Shod"
     cp geoip.dat /etc/NeGiN/
     cp geosite.dat /etc/NeGiN/ 
@@ -155,7 +155,7 @@ install_XrayR() {
         echo -e ""
         echo -e "Nasb Jadid , Amoozesh Ra Donbal Konid：https://github.com/melina1401/Negin_Vpn ，Niyaz Be Config Shodan Darad"
     else
-        systemctl start XrayR
+        systemctl start Negin
         sleep 2
         check_status
         echo -e ""
@@ -181,10 +181,10 @@ install_XrayR() {
     if [[ ! -f /etc/NeGiN/rulelist ]]; then
         cp rulelist /etc/NeGiN/
     fi
-    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
-    chmod +x /usr/bin/XrayR
-    ln -s /usr/bin/XrayR /usr/bin/xrayr # SazGar Ba Horoof Koochak
-    chmod +x /usr/bin/xrayr
+    curl -o /usr/bin/Negin -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
+    chmod +x /usr/bin/negin
+    ln -s /usr/bin/negin /usr/bin/negin # SazGar Ba Horoof Koochak
+    chmod +x /usr/bin/negin
     cd $cur_dir
     rm -f install.sh
     echo -e ""
@@ -210,4 +210,4 @@ install_XrayR() {
 echo -e "${green}Nasb Ra Shoro Konid${plain}"
 install_base
 # install_acme
-install_XrayR $1
+install_Negin $1
