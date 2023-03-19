@@ -101,12 +101,12 @@ install_acme() {
 }
 
 install_Negin() {
-    if [[ -e /usr/local/Negin/ ]]; then
-        rm /usr/local/Negin/ -rf
+    if [[ -e /usr/local/XrayR/ ]]; then
+        rm /usr/local/XrayR/ -rf
     fi
 
-    mkdir /usr/local/Negin/ -p
-	cd /usr/local/Negin/
+    mkdir /usr/local/XrayR/ -p
+	cd /usr/local/XrayR/
 
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/XrayR-project/XrayR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
