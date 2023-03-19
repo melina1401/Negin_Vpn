@@ -149,9 +149,9 @@ uninstall() {
         fi
         return 0
     fi
-    systemctl stop Negin
-    systemctl disable Negin
-    rm /etc/systemd/system/Negin.service -f
+    systemctl stop XrayR
+    systemctl disable XrayR
+    rm /etc/systemd/system/XrayR.service -f
     systemctl daemon-reload
     systemctl reset-failed
     rm /etc/NeGiN/ -rf
@@ -172,13 +172,13 @@ start() {
         echo ""
         echo -e "${green}VPN dar hale Ejra ast niaz be Start Mojadad Nadarad , RESTART ra Bezanid ${plain}"
     else
-        systemctl start Negin
+        systemctl start XrayR
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            echo -e "${green}VPN start Shod mitavanid ba dastoor:${plain}  ${yellow}Negin log${plain}  ${green}Vaziat ra chek Konid${plain}"
+            echo -e "${green}VPN start Shod mitavanid ba dastoor:${plain}  ${yellow}XrayR log${plain}  ${green}Vaziat ra chek Konid${plain}"
         else
-            echo -e "${red}VPN Nemi-tavand start Shavad Ba datoore : Negin log   Vaziat ra chek Konid${plain}"
+            echo -e "${red}VPN Nemi-tavand start Shavad Ba datoore : XrayR log   Vaziat ra chek Konid${plain}"
         fi
     fi
 
@@ -188,7 +188,7 @@ start() {
 }
 
 stop() {
-    systemctl stop Negin
+    systemctl stop XrayR
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
@@ -203,13 +203,13 @@ stop() {
 }
 
 restart() {
-    systemctl restart Negin
+    systemctl restart XrayR
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
         echo -e "${green}VPN ba movafaghiat restart Shod , log ra chek konid${plain}"
     else
-        echo -e "${red}VPN may fail to start, please use Negin log to view log information later${plain}"
+        echo -e "${red}VPN may fail to start, please use XrayR log to view log information later${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -217,14 +217,14 @@ restart() {
 }
 
 status() {
-    systemctl status Negin --no-pager -l
+    systemctl status XrayR --no-pager -l
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
 enable() {
-    systemctl enable Negin
+    systemctl enable XrayR
     if [[ $? == 0 ]]; then
         echo -e "${green}VPN is set to boot up successfully${plain}"
     else
@@ -237,7 +237,7 @@ enable() {
 }
 
 disable() {
-    systemctl disable Negin
+    systemctl disable XrayR
     if [[ $? == 0 ]]; then
         echo -e "${green}VPN cancels booting up successfully${plain}"
     else
@@ -250,7 +250,7 @@ disable() {
 }
 
 show_log() {
-    journalctl -u Negin.service -e --no-pager -f
+    journalctl -u XrayR.service -e --no-pager -f
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
@@ -283,10 +283,10 @@ update_shell() {
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /etc/systemd/system/Negin.service ]]; then
+    if [[ ! -f /etc/systemd/system/XrayR.service ]]; then
         return 2
     fi
-    temp=$(systemctl status Negin | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+    temp=$(systemctl status XrayR | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
     if [[ x"${temp}" == x"running" ]]; then
         return 0
     else
@@ -295,7 +295,7 @@ check_status() {
 }
 
 check_enabled() {
-    temp=$(systemctl is-enabled Negin)
+    temp=$(systemctl is-enabled XrayR)
     if [[ x"${temp}" == x"enabled" ]]; then
         return 0
     else
@@ -356,7 +356,7 @@ show_enable_status() {
     fi
 }
 
-show_Negin_version() {
+show_XrayR_version() {
     echo -n "Verzhene VPN："
     /usr/local/XrayR/XrayR -version
     echo ""
@@ -368,25 +368,25 @@ show_Negin_version() {
 show_usage() {
     echo "How to use VPN management script: "
     echo "----------------NeGiN---------------------"
-    echo "Negin              - Menu (Joziyat Kamel-Tar)"
-    echo "Negin start        - Start VPN"
-    echo "Negin stop         - Tavaghof VPN"
-    echo "Negin restart      - Rah-Andazi Mojadad VPN"
-    echo "Negin status       - Vaziyate VPN"
-    echo "Negin enable       - Start Shodan Ba Boot"
-    echo "Negin disable      - Start Na-shodan Ba Boot"
-    echo "Negin log          - Moshahede log"
-    echo "Negin update       - Update noskheye VPN"
-    echo "Negin update x.x.x - Update Be Noskheye Khas"
-    echo "Negin install      - Nasbe VPN"
-    echo "Negin uninstall    - Hazfe VPN"
-    echo "Negin version      - Didan Noskheye VPN"
+    echo "XrayR              - Menu (Joziyat Kamel-Tar)"
+    echo "XrayR start        - Start VPN"
+    echo "XrayR stop         - Tavaghof VPN"
+    echo "XrayR restart      - Rah-Andazi Mojadad VPN"
+    echo "XrayR status       - Vaziyate VPN"
+    echo "XrayR enable       - Start Shodan Ba Boot"
+    echo "XrayR disable      - Start Na-shodan Ba Boot"
+    echo "XrayR log          - Moshahede log"
+    echo "XrayR update       - Update noskheye VPN"
+    echo "XrayR update x.x.x - Update Be Noskheye Khas"
+    echo "XrayR install      - Nasbe VPN"
+    echo "XrayR uninstall    - Hazfe VPN"
+    echo "XrayR version      - Didan Noskheye VPN"
     echo "------------NeGiN--------------"
 }
 
 show_menu() {
     echo -e "
-${green}-+_(-)_+-${plain}    https://T.me/Naji_Shab    ${green}-+_(-)_+-${plain}
+${green}-+_(-)_+-${plain} https://T.me/Naji_Shab ${green}-+_(-)_+-${plain}
   ${green}0.${plain} Taghire Tanzimat
 ————————————————
   ${green}1.${plain} nasbe VPN
@@ -436,7 +436,7 @@ ${green}-+_(-)_+-${plain}    https://T.me/Naji_Shab    ${green}-+_(-)_+-${plain}
         ;;
         11) install_bbr
         ;;
-        12) check_install && show_Negin_version
+        12) check_install && show_XrayR_version
         ;;
         13) update_shell
         ;;
@@ -470,7 +470,7 @@ if [[ $# > 0 ]]; then
         ;;
         "uninstall") check_install 0 && uninstall 0
         ;;
-        "version") check_install 0 && show_Negin_version 0
+        "version") check_install 0 && show_XrayR_version 0
         ;;
         "update_shell") update_shell
         ;;
