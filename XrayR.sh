@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -176,9 +176,9 @@ start() {
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            echo -e "${green}VPN start Shod mitavanid ba dastoor:${plain}  ${yellow}XrayR log${plain}  ${green}Vaziat ra chek Konid${plain}"
+            echo -e "${green}VPN start Shod mitavanid ba dastoor:${plain}  ${yellow}Negin log${plain}  ${green}Vaziat ra chek Konid${plain}"
         else
-            echo -e "${red}VPN Nemi-tavand start Shavad Ba datoore : XrayR log   Vaziat ra chek Konid${plain}"
+            echo -e "${red}VPN Nemi-tavand start Shavad Ba datoore : Negin log   Vaziat ra chek Konid${plain}"
         fi
     fi
 
@@ -209,7 +209,7 @@ restart() {
     if [[ $? == 0 ]]; then
         echo -e "${green}VPN ba movafaghiat restart Shod , log ra chek konid${plain}"
     else
-        echo -e "${red}VPN may fail to start, please use XrayR log to view log information later${plain}"
+        echo -e "${red}VPN may fail to start, please use Negin log to view log information later${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -270,7 +270,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/XrayR.sh
+    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}Failed to download the script, please check whether the machine can connect to Github${plain}"
@@ -368,19 +368,19 @@ show_XrayR_version() {
 show_usage() {
     echo "How to use VPN management script: "
     echo "----------------NeGiN---------------------"
-    echo "XrayR              - Menu (Joziyat Kamel-Tar)"
-    echo "XrayR start        - Start VPN"
-    echo "XrayR stop         - Tavaghof VPN"
-    echo "XrayR restart      - Rah-Andazi Mojadad VPN"
-    echo "XrayR status       - Vaziyate VPN"
-    echo "XrayR enable       - Start Shodan Ba Boot"
-    echo "XrayR disable      - Start Na-shodan Ba Boot"
-    echo "XrayR log          - Moshahede log"
-    echo "XrayR update       - Update noskheye VPN"
-    echo "XrayR update x.x.x - Update Be Noskheye Khas"
-    echo "XrayR install      - Nasbe VPN"
-    echo "XrayR uninstall    - Hazfe VPN"
-    echo "XrayR version      - Didan Noskheye VPN"
+    echo "Negin              - Menu (Joziyat Kamel-Tar)"
+    echo "Negin start        - Start VPN"
+    echo "Negin stop         - Tavaghof VPN"
+    echo "Negin restart      - Rah-Andazi Mojadad VPN"
+    echo "Negin status       - Vaziyate VPN"
+    echo "Negin enable       - Start Shodan Ba Boot"
+    echo "Negin disable      - Start Na-shodan Ba Boot"
+    echo "Negin log          - Moshahede log"
+    echo "Negin update       - Update noskheye VPN"
+    echo "Negin update x.x.x - Update Be Noskheye Khas"
+    echo "Negin install      - Nasbe VPN"
+    echo "Negin uninstall    - Hazfe VPN"
+    echo "Negin version      - Didan Noskheye VPN"
     echo "------------NeGiN--------------"
 }
 
