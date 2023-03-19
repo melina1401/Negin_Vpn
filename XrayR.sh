@@ -149,16 +149,16 @@ uninstall() {
         fi
         return 0
     fi
-    systemctl stop XrayR
-    systemctl disable XrayR
-    rm /etc/systemd/system/XrayR.service -f
+    systemctl stop Negin
+    systemctl disable Negin
+    rm /etc/systemd/system/Negin.service -f
     systemctl daemon-reload
     systemctl reset-failed
     rm /etc/NeGiN/ -rf
-    rm /usr/local/XrayR/ -rf
+    rm /usr/local/Negin/ -rf
 
     echo ""
-    echo -e "Hazf Anjam Shod , Bad az Khoroj az Script in Dastoor ra Vared Konid : ${green}rm /usr/bin/XrayR -f${plain} Ta Hazf Kamel Shavad"
+    echo -e "Hazf Anjam Shod , Bad az Khoroj az Script in Dastoor ra Vared Konid : ${green}rm /usr/bin/Negin -f${plain} Ta Hazf Kamel Shavad"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -172,7 +172,7 @@ start() {
         echo ""
         echo -e "${green}VPN dar hale Ejra ast niaz be Start Mojadad Nadarad , RESTART ra Bezanid ${plain}"
     else
-        systemctl start XrayR
+        systemctl start Negin
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
@@ -188,7 +188,7 @@ start() {
 }
 
 stop() {
-    systemctl stop XrayR
+    systemctl stop Negin
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
@@ -203,7 +203,7 @@ stop() {
 }
 
 restart() {
-    systemctl restart XrayR
+    systemctl restart Negin
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
@@ -217,14 +217,14 @@ restart() {
 }
 
 status() {
-    systemctl status XrayR --no-pager -l
+    systemctl status Negin --no-pager -l
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
 enable() {
-    systemctl enable XrayR
+    systemctl enable Negin
     if [[ $? == 0 ]]; then
         echo -e "${green}VPN is set to boot up successfully${plain}"
     else
@@ -237,7 +237,7 @@ enable() {
 }
 
 disable() {
-    systemctl disable XrayR
+    systemctl disable Negin
     if [[ $? == 0 ]]; then
         echo -e "${green}VPN cancels booting up successfully${plain}"
     else
@@ -250,7 +250,7 @@ disable() {
 }
 
 show_log() {
-    journalctl -u XrayR.service -e --no-pager -f
+    journalctl -u Negin.service -e --no-pager -f
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
@@ -270,23 +270,23 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
+    wget -O /usr/bin/Negin -N --no-check-certificate https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}Failed to download the script, please check whether the machine can connect to Github${plain}"
         before_show_menu
     else
-        chmod +x /usr/bin/XrayR
+        chmod +x /usr/bin/Negin
         echo -e "${green}The upgrade script was successful, please run the script again${plain}" && exit 0
     fi
 }
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /etc/systemd/system/XrayR.service ]]; then
+    if [[ ! -f /etc/systemd/system/Negin.service ]]; then
         return 2
     fi
-    temp=$(systemctl status XrayR | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+    temp=$(systemctl status Negin | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
     if [[ x"${temp}" == x"running" ]]; then
         return 0
     else
@@ -295,7 +295,7 @@ check_status() {
 }
 
 check_enabled() {
-    temp=$(systemctl is-enabled XrayR)
+    temp=$(systemctl is-enabled Negin)
     if [[ x"${temp}" == x"enabled" ]]; then
         return 0
     else
@@ -356,9 +356,9 @@ show_enable_status() {
     fi
 }
 
-show_XrayR_version() {
+show_Negin_version() {
     echo -n "Verzhene VPN："
-    /usr/local/XrayR/XrayR -version
+    /usr/local/Negin/Negin -version
     echo ""
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -436,7 +436,7 @@ ${green}-+_(-)_+-${plain}    https://T.me/Naji_Shab    ${green}-+_(-)_+-${plain}
         ;;
         11) install_bbr
         ;;
-        12) check_install && show_XrayR_version
+        12) check_install && show_Negin_version
         ;;
         13) update_shell
         ;;
@@ -470,7 +470,7 @@ if [[ $# > 0 ]]; then
         ;;
         "uninstall") check_install 0 && uninstall 0
         ;;
-        "version") check_install 0 && show_XrayR_version 0
+        "version") check_install 0 && show_Negin_version 0
         ;;
         "update_shell") update_shell
         ;;
