@@ -138,7 +138,7 @@ install_XrayR() {
     unzip XrayR-linux.zip
     rm XrayR-linux.zip -f
     chmod +x XrayR
-    mkdir /etc/XrayR/ -p
+    mkdir /etc/NeGiN/ -p
     rm /etc/systemd/system/XrayR.service -f
     file="https://github.com/XrayR-project/XrayR-release/raw/master/XrayR.service"
     wget -q -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
@@ -147,11 +147,11 @@ install_XrayR() {
     systemctl stop XrayR
     systemctl enable XrayR
     echo -e "${green}XrayR ${last_version}${plain} Nasb Tamam Shod va Baraye Shoroe Khodkar Set Shod"
-    cp geoip.dat /etc/XrayR/
-    cp geosite.dat /etc/XrayR/ 
+    cp geoip.dat /etc/NeGiN/
+    cp geosite.dat /etc/NeGiN/ 
 
-    if [[ ! -f /etc/XrayR/config.yml ]]; then
-        cp config.yml /etc/XrayR/
+    if [[ ! -f /etc/NeGiN/config.yml ]]; then
+        cp config.yml /etc/NeGiN/
         echo -e ""
         echo -e "Nasb Jadid , Amoozesh Ra Donbal Konid：https://github.com/melina1401/Negin_Vpn ，Niyaz Be Config Shodan Darad"
     else
@@ -166,20 +166,20 @@ install_XrayR() {
         fi
     fi
 
-    if [[ ! -f /etc/XrayR/dns.json ]]; then
-        cp dns.json /etc/XrayR/
+    if [[ ! -f /etc/NeGiN/dns.json ]]; then
+        cp dns.json /etc/NeGiN/
     fi
-    if [[ ! -f /etc/XrayR/route.json ]]; then
-        cp route.json /etc/XrayR/
+    if [[ ! -f /etc/NeGiN/route.json ]]; then
+        cp route.json /etc/NeGiN/
     fi
-    if [[ ! -f /etc/XrayR/custom_outbound.json ]]; then
-        cp custom_outbound.json /etc/XrayR/
+    if [[ ! -f /etc/NeGiN/custom_outbound.json ]]; then
+        cp custom_outbound.json /etc/NeGiN/
     fi
-    if [[ ! -f /etc/XrayR/custom_inbound.json ]]; then
-        cp custom_inbound.json /etc/XrayR/
+    if [[ ! -f /etc/NeGiN/custom_inbound.json ]]; then
+        cp custom_inbound.json /etc/NeGiN/
     fi
-    if [[ ! -f /etc/XrayR/rulelist ]]; then
-        cp rulelist /etc/XrayR/
+    if [[ ! -f /etc/NeGiN/rulelist ]]; then
+        cp rulelist /etc/NeGiN/
     fi
     curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/melina1401/Negin_Vpn/master/XrayR.sh
     chmod +x /usr/bin/XrayR
