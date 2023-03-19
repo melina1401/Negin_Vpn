@@ -137,7 +137,7 @@ install_Negin() {
 
     unzip XrayR-linux.zip
     rm XrayR-linux.zip -f
-    chmod +x Negin
+    chmod +x XrayR
     mkdir /etc/NeGiN/ -p
     rm /etc/systemd/system/Negin.service -f
     file="https://github.com/melina1401/Negin_Vpn/raw/master/Negin.service"
