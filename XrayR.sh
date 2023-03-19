@@ -155,7 +155,7 @@ uninstall() {
     systemctl daemon-reload
     systemctl reset-failed
     rm /etc/NeGiN/ -rf
-    rm /usr/local/Negin/ -rf
+    rm /usr/local/XrayR/ -rf
 
     echo ""
     echo -e "Hazf Anjam Shod , Bad az Khoroj az Script in Dastoor ra Vared Konid : ${green}rm /usr/bin/Negin -f${plain} Ta Hazf Kamel Shavad"
@@ -358,7 +358,7 @@ show_enable_status() {
 
 show_Negin_version() {
     echo -n "Verzhene VPN："
-    /usr/local/Negin/Negin -version
+    /usr/local/XrayR/Negin -version
     echo ""
     if [[ $# == 0 ]]; then
         before_show_menu
